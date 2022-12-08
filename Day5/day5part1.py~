@@ -1,0 +1,21 @@
+stacks = [ ['Z','N'],
+           ['M','C','D'],
+           ['P']]
+
+moves = ['move 1 from 2 to 1',
+         'move 3 from 1 to 3',
+         'move 2 from 2 to 1',
+         'move 1 from 1 to 2']
+
+with open('input.txt','r') as f:
+    for move in moves:
+        move_crates = []
+        number = int(move.split()[1])
+        source = int(move.split()[3])
+        target = int(move.split()[5])
+        for x in range(number):
+            move_crates.append(stacks[source].pop())
+        stacks[target].append(move_crates)
+
+for stack in stacks:
+    print(stack[0])

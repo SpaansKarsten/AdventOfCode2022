@@ -1,0 +1,7 @@
+teststring = 'mjqjpqmgbljsphdztnvjfqwrcgsmlb'
+
+test = True
+ix = 0
+while test:
+    if list(set(list(teststring[ix:ix+4]))) == list(teststring[ix:ix+4])
+    ix += 1

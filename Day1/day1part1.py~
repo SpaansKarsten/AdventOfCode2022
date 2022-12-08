@@ -1,0 +1,10 @@
+foodlist = []
+with open('input.txt','r') as f:
+    elftotal = 0
+    for l in f:
+        if l.strip() == '':
+            foodlist.append(elftotal)
+        else:
+            elftotal += int(l.strip())
+
+print(foodlist.index(max(foodlist))+1)

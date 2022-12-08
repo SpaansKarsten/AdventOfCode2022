@@ -1,0 +1,11 @@
+import numpy as np
+import pdb
+
+grid = []
+with open('testinput.txt','r') as f:
+    for line in f:
+        grid.append(int(x) for x in line.strip().split(''))
+
+grid = np.array(grid)
+pdb.set_trace()
+                    

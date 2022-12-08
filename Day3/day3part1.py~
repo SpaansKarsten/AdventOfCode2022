@@ -1,0 +1,24 @@
+test = ['vJrwpWtwJgWrhcsFMMfFFhFp',
+        'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL',
+        'PmmdzqPrVvPwwTWBwg',
+        'wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn',
+        'ttgJtRGJQctTZtZT',
+        'CrZsJsPPZsGzwwsLwLmpwMDw']
+
+alphabet = list(string.ascii_letters)
+
+priority_sum = 0
+for s in test:
+    s = s.strip()
+    rs1 = s[:len(s)/2]
+    rs2 - s[len(2)/2:]
+    for r1 in rs1:
+        if r1 in rs2:
+            priority_sum += alphabet.index(r1)+1
+            break
+
+print priority_sum
+
+
+
+        
