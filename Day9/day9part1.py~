@@ -1,0 +1,33 @@
+class Knot:
+    def __init__(self,i,j):
+        self.i = i
+        self.j = j
+
+    def move(self,direction):
+        pass
+
+    def follow(self,leader):
+        pass
+
+testinput = ['R 4',
+             'U 4',
+             'L 3',
+             'D 1',
+             'R 4',
+             'D 1',
+             'L 5',
+             'R 2']
+
+H = Knot(4,0)
+T = Knot(4,0)
+grid = np.bool(np.zeros((10,10)))
+grid[T.i,T.j] = True
+
+with open('input.txt','r') as f:
+    for line in testinput:
+        direction = line.split(' ')[0]
+        steps = int(line.split(' ')[1])
+        for step in range(steps):
+            H.move(direction)
+            T.follow(H)
+            grid[T.i,T.j] = True
