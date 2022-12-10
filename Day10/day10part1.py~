@@ -1,0 +1,15 @@
+cyclenumber = 1
+X = 1
+
+with open('testinput.txt','r') as f:
+    for line in f:
+        if line.strip() == 'noop':
+            cyclenumber += 1
+            if cyclenumber % 20 == 0:
+                pass
+        else:
+            cyclenumber += 1
+            if cyclenumber % 20 == 0:
+                pass
+            cyclenumber += 1
+            X += int(line.strip().split(' ')[1])
