@@ -1,0 +1,18 @@
+class Monkey:
+    def __init__(self,items,operation,testvalue,throwtrue,throwfalse):
+        self.items = items
+        self.operation = operation
+        self.testvalue = testvalue
+        self.throwtrue = throwtrue
+        self.throwfalse = throwfalse
+
+    def get_next_item(self):
+        return self.items.pop(0)
+        
+    def throw(self,item,receivemonkey)
+        receivemonkey.items.append(item)
+
+
+
+    
+    
