@@ -1,0 +1,40 @@
+def get_paths(shape):
+    paths = {}
+    vertices = []
+    for y in range(shape[0]):
+        for x in range(shape[1]):
+            paths[f'{y},{x}'] = []
+            if y-1 >= 0:
+                paths[f'{y},{x}'].append((y-1,x))
+            if y+1 < shape[0]:
+                paths[f'{y},{x}'].append((y+1,x))
+            if x-1 >= 0:
+                paths[f'{y},{x}'].append((y,x-1))
+            if x+1 < shape[1]:
+                paths[f'{y},{x}'].append((y,x+1))
+            vertices.append((y,x))
+    return paths, vertices
+
+def get_min_vertex(cost, vertices):
+    min_cost = np.inf
+    
+    for vertex in vertices:
+        if risk[vertex[0],vertex[1]] < min_cost:
+            min_cost = cost[vertex[0],vertex[1]]
+            min_vertex = vertex
+    return min_vertex
+            
+def Dijkstra(risk,source):
+    paths, vertices = get_paths(risk.shape)
+    cum_cost = np.ones_like(risk)*np.inf
+    cum_cost[source[0],source[1]] = 0
+    while len(vertices) > 0:
+        min_vertex = get_min_vertex(cum_cost,vertices)
+        vertices.remove(min_vertex)
+        cum_cost_this = cum_cost[min_vertex[0],min_vertex[1]]
+        for path in paths[f'{min_vertex[0]},{min_vertex[1]}']:
+            if path in vertices:
+                riskthis = cum_cost_this + risk[path[0],path[1]]
+                if riskthis < cum_cost[path[0],path[1]]:
+                    cum_cost[path[0],path[1]] = costthis
+    return cum_cost
