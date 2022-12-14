@@ -1,0 +1,142 @@
+import pdb
+def compare(leftthis, rightthis):
+    if isinstance(leftthis,int) and isinstance(rightthis,int):
+        if leftthis < rightthis:
+            return True
+        elif leftthis > rightthis:
+            return False
+        else:
+            return None
+    elif isinstance(leftthis,list) and isinstance(rightthis,list):
+        if len(leftthis) == 0:
+            return True
+        elif len(rightthis) == 0:
+            return False
+        else:
+            firstleft = leftthis.pop(0)
+            firstright = rightthis.pop(0)
+            result = compare(firstleft,firstright)
+    elif isinstance(leftthis,int):
+        firstleft = [leftthis]
+        result = compare(firstleft, rightthis)
+    else:
+        firstright = [rightthis]
+        result = compare(leftthis, firstright)
+        
+    if result == None:
+        if isinstance(leftthis,list) and isinstance(rightthis,list):
+            if len(leftthis) > 0 and len(rightthis) > 0:
+                result = compare(leftthis,rightthis)
+            elif len(leftthis) > 0:
+                result = False
+            elif len(rightthis) > 0:
+                return True
+            else:
+                result = None
+        elif isinstance(leftthis,list):
+            if len(leftthis) > 0:
+                result = compare(leftthis,rightthis)
+            else:
+                result = True
+        elif isinstance(rightthis,list):
+            if len(rightthis) > 0:
+                result = compare(leftthis,rightthis)
+            else:
+                result = False
+
+    return result
+
+#def compare(leftthis, rightthis):
+#
+#    if isinstance(leftthis,list):
+#        if len(leftthis) > 0:
+#            firstleft = leftthis.pop(0)
+#        else:
+#            if isinstance(rightthis,list):
+#                if len(rightthis) == 0:
+#                    return None
+#            return True
+#    else:
+#        firstleft = leftthis
+#
+#    if isinstance(rightthis,list):
+#        if len(rightthis) > 0:
+#            firstright = rightthis.pop(0)
+#        else:
+#            return False
+#    else:
+#        firstright = rightthis
+#    if isinstance(firstleft,list) or isinstance(firstright,list):
+#        result = compare(firstleft,firstright)
+#    elif firstleft == firstright:
+#        result = None
+#    elif firstleft < firstright:
+#        result = True
+#    else:
+#        result = False
+#    if result == None:
+#        if isinstance(leftthis,list) and isinstance(rightthis,list):
+#            if len(leftthis) > 0 and len(rightthis) > 0:
+#                result = compare(leftthis,rightthis)
+#            elif len(leftthis) > 0:
+#                result = False
+#            else:
+#                result = True
+#        elif isinstance(leftthis,list):
+#            if len(leftthis) > 0:
+#                result = compare(leftthis,rightthis)
+#            else:
+#                result = True
+#        elif isinstance(rightthis,list):
+#            if len(rightthis) > 0:
+#                result = compare(leftthis,rightthis)
+#            else:
+#                result = False
+#
+#    return result
+    
+    
+
+inputlist = [ '[1,1,3,1,1]',
+              '[1,1,5,1,1]',
+              '',
+              '[[1],[2,3,4]]',
+              '[[1],4]',
+              '',
+              '[9]',
+              '[[8,7,6]]',
+              '',
+              '[[4,4],4,4]',
+              '[[4,4],4,4,4]',
+              '',
+              '[7,7,7,7]',
+              '[7,7,7]',
+              '',
+              '[]',
+              '[3]',
+              '',
+              '[[[]]]',
+              '[[]]',
+              '',
+              '[1,[2,[3,[4,[5,6,7]]]],8,9]',
+              '[1,[2,[3,[4,[5,6,0]]]],8,9]']
+
+#inputlist = []
+#with open('input.txt','r') as f:
+#    for line in f:
+#        inputlist.append(line)
+
+pair = 1
+pairsum = 0
+while len(inputlist) > 0:
+    left = eval(inputlist.pop(0).strip())
+    right = eval(inputlist.pop(0).strip())
+    if len(inputlist) > 0:
+        inputlist.pop(0)
+    result = compare(left,right)    
+    print(pair, result)
+    if result:
+        pairsum += pair
+    pair += 1
+
+print(pairsum)
