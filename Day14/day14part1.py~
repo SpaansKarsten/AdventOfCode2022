@@ -1,0 +1,19 @@
+import numpy as np
+
+testinput = ['498,4 -> 498,6 -> 496,6\n',
+             '503,4 -> 502,4 -> 502,9 -> 494,9\n']
+
+grid = np.zeros((200,600))
+with open('input.txt','r') as f:
+    for line in testinput:
+        nodes = testinput.strip().split(' -> ')
+        startnode = nodes.pop(0)
+        while len(nodes) > 0:
+            endnode = nodes.pop(0)
+            if startnode[0] == endnode[0]:
+                j = startnode[0]
+                i = range(min(startnode[1],endnode[1]),max(startnode[1],endnode[1])+1)
+            else:
+                i = startnode[1]
+                j = range(min(startnode[0],endnode[0]),max(startnode[0],endnode[0])+1)
+        
